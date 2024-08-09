@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const Navigation = (props) => {
   return (
@@ -17,8 +18,8 @@ export const Navigation = (props) => {
             <span className="icon-bar"></span>{" "}
             <span className="icon-bar"></span>{" "}
           </button>
-          <a className="navbar-brand page-scroll" href="#page-top">
-            React Landing Page
+          <a className="navbar-brand page-scroll" href="/">
+            RECRUITMENT
           </a>{" "}
         </div>
 
@@ -28,19 +29,19 @@ export const Navigation = (props) => {
         >
           <ul className="nav navbar-nav navbar-right">
             <li>
-              <a href="#portfolio" className="page-scroll">
+              <Link to="/joblist" className="page-scroll">
                 채용 공고
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#testimonials" className="page-scroll">
+              <Link to="/myapply" className="page-scroll">
                 나의 지원서
-              </a>
+              </Link>              
             </li>
             <li>
-              <a href="#contact" className="page-scroll">
+              <Link to="/login" className="page-scroll">
                 로그인
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

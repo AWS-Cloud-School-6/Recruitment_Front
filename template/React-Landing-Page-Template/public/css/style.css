@@ -439,7 +439,7 @@ header .intro-text {
   font-weight: 600;
   color: #666;
 }
-/* Team Section */
+/* Team Section  -> 삭제 */
 #team {
   padding: 100px 0;
 }
@@ -457,7 +457,7 @@ header .intro-text {
   padding: 10px 0 0;
   color: #888;
 }
-/* Contact Section */
+/* Contact Section -> 로그인 */
 #contact {
   padding: 100px 0 60px;
   background: linear-gradient(to right, #6372ff 0%, #5ca9fb 100%);
