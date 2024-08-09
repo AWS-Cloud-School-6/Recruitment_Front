@@ -7,7 +7,7 @@ const initialState = {
   email: "",
   message: "",
 };
-export const Contact = (props) => {
+export const Login = (props) => {
   const [{ name, email, message }, setState] = useState(initialState);
 
   const handleChange = (e) => {
