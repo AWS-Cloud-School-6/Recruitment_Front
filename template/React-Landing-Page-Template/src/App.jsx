@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Navigation } from "./components/navigation";
 import { Header } from "./components/header";
 import { Features } from "./components/features";
@@ -11,32 +11,35 @@ import JsonData from "./data/data.json";
 import SmoothScroll from "smooth-scroll";
 import "./App.css";
 
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useLocation  } from "react-router-dom";
+
 
 export const scroll = new SmoothScroll('a[href*="#"]', {
   speed: 1000,
   speedAsDuration: true,
 });
 
+// 추후 시간 남으면 애니메이션 효과 구현
+
 const App = () => {
   const [landingPageData, setLandingPageData] = useState({});
+
   useEffect(() => {
     setLandingPageData(JsonData);
   }, []);
 
-  return (    
+
+  return (     
     <Router>
-      <Navigation />
-        <Header data={landingPageData.Header} />
-        <Features data={landingPageData.Features} />                 
+      <Navigation />   
       <Routes>
         <Route path="/" element={<Header data={landingPageData.Header} />}/>
+        <Route path="/features" element={<Features data={landingPageData.Features} />}/> 
         <Route path="/joblist" element={<Joblist data={landingPageData.Gallery} />}/>
         <Route path="/myapply" element={<Myapply data={landingPageData.Testimonials} />}/>
-        <Route path="/login" element={<Login data={landingPageData.Contact} />}/>
-      </Routes>
-    </Router>
-
+        <Route path="/login" element={<Login />}/>
+      </Routes>   
+    </Router> 
   );
 };
 

@@ -12,10 +12,15 @@
   "author": "integerbin",
   "license": "ISC",
   "dependencies": {
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^5.16.7",
+    "@mui/material": "^5.16.7",
     "emailjs-com": "^3.2.0",
+    "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-script": "^2.0.5",
-    "react-scripts": "^5.0.1",
+    "react-scripts": "^3.0.1",
     "smooth-scroll": "^16.1.3"
   }
 }
