@@ -1,27 +1,42 @@
-import React, { useEffect } from "react";
-import Apply from "./Apply"
+import React, { useEffect, useState } from "react";
+import { useSelector } from 'react-redux';
+import Apply from "./Apply";
 
-
-const RESUME_API = 'http://34.172.8.241:8080/resumes/1'
-const JOB_API = 'http://34.172.8.241:8080/job-postings/'
+const JOB_API = 'http://34.172.8.241:8080/job-postings/';
 function Myapply() {
+  const user = useSelector((state) => state.user);
 
-  const [loading, setLoading] = React.useState(true);
-  const [apps, setApplist] = React.useState([]);
-  const [jobs, setJobList] = React.useState([]);
+  const RESUME_API = `http://34.172.8.241:8080/resumes/${user.id}`;
+  const [loading, setLoading] = useState(true);
+  const [apps, setApps] = useState([]);
+  const [error, setError] = useState(null);
+
   const getApplyList = async () => {
-    const json = await (
-      await fetch(
-        RESUME_API,
-      )
-    ).json();
-    setApplist(json.list);
-    setLoading(false);
-
+    try {
+      const response = await fetch(RESUME_API);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      setApps(data.list);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
   };
+
   useEffect(() => {
     getApplyList();
   }, []);
+
+  if (loading) {
+    return <h2>잠시만 기다려주세요...</h2>;
+  }
+
+  if (error) {
+    return <h2>Error: {error}</h2>;
+  }
 
   return (
     <div id="myapps">
@@ -30,28 +45,33 @@ function Myapply() {
           <h2>나의 지원서</h2>
         </div>
         <div className="row">
-          {loading ? (
-            <h2>잠시만 기달려주세요...</h2>
-          ) : (
+          {apps && apps.length > 0 ? (
             <div>
-              {apps.map((apps) =>
-              (<Apply
-                jid={apps.jobPostingId}
-                uid={apps.userId}
-                name={apps.name}
-                email={apps.email}
-                phone={apps.phone}
-                summary={apps.summary}
-                education={apps.education}
-                experience={apps.experience}
-                skills={apps.skills}
-                updatedAt={apps.updatedAt}
-              />
+              {apps.map((app) => (
+                <Apply
+                  key={app.id} // Ensure each item has a unique key
+                  jid={app.jobPostingId}
+                  uid={app.userId}
+                  name={app.name}
+                  email={app.email}
+                  phone={app.phone}
+                  summary={app.summary}
+                  education={app.education}
+                  experience={app.experience}
+                  skills={app.skills}
+                  updatedAt={app.updatedAt}
+                />
               ))}
-            </div>)}
+            </div>
+          ) : (
+            <div className="text-center">
+              <h2>지원한 내역이 없습니다.</h2>
+            </div>
+          )}
         </div>
       </div>
     </div>
   );
-};
+}
+
 export default Myapply;
