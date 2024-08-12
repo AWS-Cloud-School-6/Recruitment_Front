@@ -97,3 +97,12 @@
 .signupLink a:hover {
   text-decoration: underline; /* 마우스를 올렸을 때 밑줄 추가 */
 }
+
+.center-content {
+  text-align: center;
+}
+
+.center-button {
+  display: inline-block; /* 버튼이 텍스트 줄과 함께 중앙에 위치하도록 설정 */
+  margin-top: 10px; /* 버튼 위에 간격 추가 (선택 사항) */
+}
