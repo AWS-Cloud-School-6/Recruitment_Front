@@ -3,8 +3,6 @@ import { useSelector } from 'react-redux';
 import Apply from "./Apply";
 
 const JOB_API = 'http://34.172.8.241:8080/job-postings/';
-
-
 function Myapply() {
   const user = useSelector((state) => state.user);
 
