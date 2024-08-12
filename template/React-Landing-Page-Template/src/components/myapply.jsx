@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
-import ListGroup from 'react-bootstrap/ListGroup';
 import Apply from "./Apply"
+
+
 const RESUME_API = 'http://34.172.8.241:8080/resumes/1'
 const JOB_API = 'http://34.172.8.241:8080/job-postings/'
 function Myapply() {

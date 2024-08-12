@@ -1,6 +1,6 @@
 import Proptypes from "prop-types";
 import { Link } from "react-router-dom";
-import ListGroup from 'react-bootstrap/ListGroup';
+
 function Apply({ jid, uid, name, email, phone, summary, education, experience, skills, createAt, updatedAt }) {
 
 

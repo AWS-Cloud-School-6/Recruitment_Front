@@ -7,36 +7,6 @@ import { loginUser } from "../userSlice";
 
 const SERVER_API = 'http://34.172.8.241:8080/users/login'
 
-// // =============================================
-// // ============== Redux slice for user ================
-// export const userSlice = createSlice({
-//   name: "user",
-//   initialState: {
-//     name: "",
-//     id: "",
-//     isLogin: false,
-//   },
-//   reducers: {
-//     loginUser: (state, action) => {
-//       state.name = action.payload.name;
-//       state.id = action.payload.id;
-//       state.isLogin = true;
-//     },
-
-//     clearUser: (state) => {
-//       state.name = "";
-//       state.id = "";
-//       state.isLogin = false;
-//     },
-//   },
-// });
-
-
-// // 액션 크리에이터 추출
-// export const { loginUser, clearUser } = userSlice.actions;
-// export default userSlice.reducer;
-
-
 
 export const Login = (props) => {
   const [email, setEmail] = useState('');
@@ -70,7 +40,7 @@ export const Login = (props) => {
         alert(response.data.msg);
 
         // 예시로 로그인 후 메인 페이지로 이동
-        navigate('/loginsuccess');
+        navigate('/');
       })
       .catch((error) => {
         alert(error.response ? error.response.data.message : error.message);

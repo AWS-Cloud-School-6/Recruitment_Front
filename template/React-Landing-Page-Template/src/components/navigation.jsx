@@ -1,7 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { logoutUser } from '../userSlice';
 
 export const Navigation = (props) => {
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const onLogoutClick = () => {
+    dispatch(logoutUser());
+    navigate('/login');
+  };
+
   return (
     <nav id="menu" className="navbar navbar-default navbar-fixed-top">
       <div className="container">
@@ -20,7 +32,7 @@ export const Navigation = (props) => {
           </button>
           <a className="navbar-brand page-scroll" href="/">
             RECRUITMENT
-          </a>{" "}
+          </a>
         </div>
 
         <div
@@ -38,10 +50,18 @@ export const Navigation = (props) => {
                 나의 지원서
               </Link>              
             </li>
-            <li>
-              <Link to="/login" className="page-scroll">
-                로그인
-              </Link>
+            <li className="center-content">
+              {user.isLogin ? (
+                <div className="page-scroll" >
+                  Welcome, {user.name}!
+                  <br />
+                  <button onClick={onLogoutClick} >Logout</button>
+                </div>                
+              ) : (
+                <Link to="/login" className="page-scroll" >
+                  로그인
+                </Link>
+              )}
             </li>
           </ul>
         </div>
