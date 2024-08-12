@@ -3,14 +3,17 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logoutUser } from '../userSlice';
+import { persistor } from "../index"
 
 export const Navigation = (props) => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const onLogoutClick = () => {
+  const onLogoutClick = async () => {
     dispatch(logoutUser());
+    //location.reload();
+    await persistor.purge();    // persistStore 데이터 날림
     navigate('/login');
   };
 
