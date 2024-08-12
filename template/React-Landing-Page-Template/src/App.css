@@ -81,3 +81,19 @@
   border: 1px solid grey;
   padding-left: 8px;
 }
+
+.inputContainer
+.signupLink {
+  display: flex;
+  justify-content: flex-end; /* 부모 요소의 자식들을 오른쪽 정렬 */
+  width: 100%;
+}
+
+.signupLink a {
+  text-decoration: none; /* 링크의 밑줄 제거 */
+  color: #007bff; /* 링크 색상 */
+}
+
+.signupLink a:hover {
+  text-decoration: underline; /* 마우스를 올렸을 때 밑줄 추가 */
+}
