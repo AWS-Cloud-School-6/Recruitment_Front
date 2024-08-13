@@ -1,12 +1,15 @@
 import axios from 'axios';
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 const SERVER_API = 'http://34.172.8.241:8080/resumes';
 function Application() {
+    const user = useSelector((state) => state.user);
     const { id } = useParams();
     const [formData, setFormData] = useState({
-        jobPostingid: id,
+        jobPostingId: id,
+        userId: user.id,
         name: '',
         email: '',
         phone: '',
@@ -43,17 +46,27 @@ function Application() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post(SERVER_API, {
-            formData
-        })
+        const dataToSend = {
+            ...formData,
+            skills: formData.skills.join(', ')  // Join array elements with a comma and a space
+        };
+        axios.post(SERVER_API, dataToSend)
             .then((response) => {
-                //e.preventDefault();
-
-                setFormData("");
+                setFormData({
+                    jobPostingId: id,
+                    userId: user.id,
+                    name: '',
+                    email: '',
+                    phone: '',
+                    summary: '',
+                    education: '',
+                    experience: '',
+                    skills: []
+                });
 
                 alert(response.data.msg);
 
-            }, e.preventDefault())
+            })
             .catch((error) => {
                 alert(error);
             });

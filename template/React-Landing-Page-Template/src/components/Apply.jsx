@@ -16,7 +16,7 @@ function Apply({ jid, uid, name, email, phone, summary, education, experience, s
     );
     const ktupdatedAt = updatedAtDate.toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
     return (
-        <Link to={`/joblist/${uid}`}>
+        <Link>
             <ul className="list-group">
                 <li className="list-group-item">
                     <div className="col">
