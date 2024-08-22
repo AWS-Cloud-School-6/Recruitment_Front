@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from 'react-redux';
 import Apply from "./Apply";
 
-const JOB_API = 'http://34.172.8.241:8080/job-postings/';
+const JOB_API = 'http://aiwa-alb-1-1052179513.us-east-2.elb.amazonaws.com:8080/api/job-postings';
 function Myapply() {
   const user = useSelector((state) => state.user);
 
-  const RESUME_API = `http://34.172.8.241:8080/resumes/${user.id}`;
+  const RESUME_API = `http://aiwa-alb-1-1052179513.us-east-2.elb.amazonaws.com:8080/api/resumes/${user.id}`;
   const [loading, setLoading] = useState(true);
   const [apps, setApps] = useState([]);
   const [error, setError] = useState(null);
