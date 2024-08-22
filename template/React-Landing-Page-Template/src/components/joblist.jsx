@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Image } from "./image";
 import Jobs from "./Jobs";
 
-const SERVER_API = 'http://internal-back-alb-749347968.us-east-2.elb.amazonaws.com:8080/api/job-postings';
+const SERVER_API = 'http://back-alb-external-1971116339.us-east-2.elb.amazonaws.com:8080/api/job-postings';
 
 function Joblist() {
   const [loading, setLoading] = useState(true);
