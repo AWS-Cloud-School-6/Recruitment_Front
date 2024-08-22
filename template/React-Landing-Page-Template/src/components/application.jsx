@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from 'react-redux';
 
-const SERVER_API = 'http://aiwa-alb-1-1052179513.us-east-2.elb.amazonaws.com:8080/api/resumes';
+const SERVER_API = 'http://internal-back-alb-749347968.us-east-2.elb.amazonaws.com:8080/api/resumes';
 function Application() {
     const user = useSelector((state) => state.user);
     const { id } = useParams();

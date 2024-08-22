@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { loginUser } from "../userSlice";
 
-const SERVER_API = 'http://aiwa-alb-1-1052179513.us-east-2.elb.amazonaws.com:8080/api/users/login'
+const SERVER_API = 'http://internal-back-alb-749347968.us-east-2.elb.amazonaws.com:8080/api/users/login'
 
 
 export const Login = (props) => {
