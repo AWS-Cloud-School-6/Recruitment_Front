@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-const SERVER_API = 'http://08jiq8xrd6.execute-api.us-east-2.amazonaws.com/api-gw:8080/api/job-postings'
+const SERVER_API = 'https://nrgq8doo8a.execute-api.us-east-2.amazonaws.com/prod/api/job-postings'
 
 function JobDetails() {
     const [job, setJob] = useState(null);
