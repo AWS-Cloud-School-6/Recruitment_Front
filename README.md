@@ -59,7 +59,6 @@ AWS Cloud School 6기 3팀 미니 프로젝트 recruitment 사이트 Front 팀 �
    <img src="https://img.shields.io/badge/Apache JMeter-D22128?style=for-the-badge&logo=Apache JMeter&logoColor=white">
   <br>
 </div>
-----
 
 
 - [Architecture]
