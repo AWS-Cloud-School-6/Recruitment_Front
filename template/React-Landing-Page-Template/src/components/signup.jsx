@@ -3,6 +3,7 @@ import React from "react";
 import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import Config, {userPool} from "../cognito";
 
 const SERVER_API = 'http://aiwa-alb-1-1052179513.us-east-2.elb.amazonaws.com:8080/api/users'
 
@@ -56,17 +57,23 @@ export const Signup = (props) => {
       return ;  
     }
     else {
-        axios.post(SERVER_API, {
-            "username": name,
-            "email": email,
-            "password": password
-        })
-        .then( (response) => {
+        // axios.post(SERVER_API, {
+        //     "username": name,
+        //     "email": email,
+        //     "password": password
+        // })
+        userPool.signUp(email, password, [], null)
+        .then( (err, result) => {
+            if (err) {
+              console.log(err);
+              return ;
+            } 
+            console.log('user 이름: ' + result.user.getUsername());
+            console.log('result 결과: ' + result);
+
             setName('')
             setEmail('')
             setPassword('')
-        
-            alert(response.data.msg);
             
         }, e.preventDefault() )
         .catch( (error)=> {
