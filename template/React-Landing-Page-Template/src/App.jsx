@@ -11,8 +11,10 @@ import { Signup } from "./components/signup";
 import JsonData from "./data/data.json";
 import SmoothScroll from "smooth-scroll";
 import "./App.css";
-import Config, {userPool} from "./cognito";
-
+import Config, { userPool } from "./cognito";
+import UserProfile from "./components/UserProfile";
+import { AuthProvider } from "./AuthContext"
+import RouteGuard from "./RouteGuard"
 
 import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 
@@ -33,19 +35,32 @@ const App = () => {
 
 
   return (
-    <Router>
-      <Navigation />
-      <Routes>
-        <Route path="/" element={<Header data={landingPageData.Header} />} />
-        <Route path="/features" element={<Features data={landingPageData.Features} />} />
-        <Route path="/joblist" element={<Joblist data={landingPageData.Gallery} />} />
-        <Route path="/myapply" element={<Myapply data={landingPageData.Testimonials} />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/joblist/:id" element={<JobDetails />} />
-        <Route path="/joblist/:id/apply" element={<Application />} />
-      </Routes>
-    </Router>
+    <AuthProvider>
+      return(
+      <Router>
+        <Navigation />
+        <Routes>
+          <Route path="/" element={<Header data={landingPageData.Header} />} />
+          <Route path="/features" element={<Features data={landingPageData.Features} />} />
+          <Route path="/joblist" element={<Joblist data={landingPageData.Gallery} />} />
+          <Route path="/myapply" element={<Myapply data={landingPageData.Testimonials} />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route
+            path="/UserProfile"
+            element={
+              <RouteGuard>
+                <UserProfile />
+              </RouteGuard>
+            }
+          />
+          <Route path="/joblist/:id" element={<JobDetails />} />
+          <Route path="/joblist/:id/apply" element={<Application />} />
+
+        </Routes>
+      </Router>
+      )
+    </AuthProvider>
   );
 };
 

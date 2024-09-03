@@ -1,51 +1,42 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import React from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { loginUser } from "../userSlice";
-
+import { AuthContext } from "../AuthContext"
+import UserProfile from "./UserProfile";
 const SERVER_API = 'http://aiwa-alb-1-1052179513.us-east-2.elb.amazonaws.com:8080/api/users/login'
 
-
 export const Login = (props) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   //const [LoginFlag, SetLogin] = useState(false);
 
   // 로그인 상태 저장 구현
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
+  const [error, setError] = useState("")
 
-  const onButtonClick = (e) => {
-    e.preventDefault(); // 기본 이벤트 막기
+  const { user, signIn } = useContext(AuthContext)
 
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setError("")
 
-    if (!email || !password) {
-      alert("제대로 입력하세요!");
-      return;
-    } else {  // 로그인 성공 로직
+    try {
+      await signIn(username, password)
+    } catch (err) {
+      setError(err.message)
 
-      axios.post(SERVER_API, {
-        "loginEmail": email,
-        "loginPw": password
-      })
-      .then((response) => {
-        setEmail('');
-        setPassword('');
-        //SetLogin(true);  // 로그인 성공 플래그
-
-        dispatch(loginUser(response.data.data));
-
-        alert(response.data.msg);
-
-        // 예시로 로그인 후 메인 페이지로 이동
-        navigate('/');
-      })
-      .catch((error) => {
-        alert(error.response ? error.response.data.message : error.message);
-      });
     }
+  }
+
+  // If the user is logged in, don't show the login form
+  if (user) {
+    // Redirect to the profile page
+    return <Navigate to="/UserProfile" />
+    console.log("Login Success")
   }
 
   return (
@@ -57,9 +48,9 @@ export const Login = (props) => {
 
       <div className={'inputContainer'}>
         <input
-          value={email}
+          value={username}
           placeholder="Enter your email here"
-          onChange={(ev) => setEmail(ev.target.value)}
+          onChange={(ev) => setUsername(ev.target.value)}
           className={'inputBox'}
         />
       </div>
@@ -82,9 +73,9 @@ export const Login = (props) => {
         </a>
       </div>
       <br />
-      
+
       <div className={'inputContainer'}>
-        <input className={'inputButton'} type="button" onClick={onButtonClick} value={'Log in'} />
+        <input className={'inputButton'} type="button" onClick={handleSubmit} value={'Log in'} />
       </div>
     </div>
   );
