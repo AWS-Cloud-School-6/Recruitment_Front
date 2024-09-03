@@ -32,7 +32,6 @@ export function signIn(username, password) {
                 reject(err)
                 console.log(err)
             },
-            newPasswordRequired:
         })
     })
 }
