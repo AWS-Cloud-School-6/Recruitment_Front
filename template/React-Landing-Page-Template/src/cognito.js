@@ -14,10 +14,10 @@ import {
 
 
 export let appConfig = {
-    region: '',
+    region: 'ap-northeast-2',
     IdentityPoolId: '',
-    UserPoolId: '',
-    ClientId: '',    
+    UserPoolId: 'ap-northeast-2_qCjWAmKqw',
+    ClientId: '2lps1llva1t5bkbe5g16qbb2cs',    
 }
 
 Config.region = appConfig.region;
@@ -29,6 +29,8 @@ export const userPool = new CognitoUserPool({
     UserPoolId: appConfig.UserPoolId,
     ClientId: appConfig.ClientId,
   });
+
+  
 
 // export const attributeList = [
 //     new CognitoUserAttribute({

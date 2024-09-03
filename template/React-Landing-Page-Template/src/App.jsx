@@ -11,6 +11,7 @@ import { Signup } from "./components/signup";
 import JsonData from "./data/data.json";
 import SmoothScroll from "smooth-scroll";
 import "./App.css";
+import Config, {userPool} from "./cognito";
 
 
 import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
