@@ -2,7 +2,6 @@ import { useState, useContext } from "react";
 import React from "react";
 import { useNavigate, Navigate } from 'react-router-dom';
 import axios from 'axios';
-import { useSelector, useDispatch } from 'react-redux';
 import { loginUser } from "../userSlice";
 import { AuthContext } from "../AuthContext"
 import UserProfile from "./UserProfile";
@@ -12,8 +11,7 @@ export const Login = (props) => {
   //const [LoginFlag, SetLogin] = useState(false);
 
   // 로그인 상태 저장 구현
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")

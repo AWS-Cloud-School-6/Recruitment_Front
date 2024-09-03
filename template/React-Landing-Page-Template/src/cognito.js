@@ -6,18 +6,18 @@
 // require('cross-fetch/polyfill');
 // var AmazonCognitoIdentity = require('amazon-cognito-identity-js');
 
-import {Config, CognitoIdentityCredentials} from "aws-sdk";
+import { Config, CognitoIdentityCredentials } from "aws-sdk";
 import {
   CognitoUserPool,
   CognitoUserAttribute
-} from "amazon-cognito-identity-js"; 
+} from "amazon-cognito-identity-js";
 
 
 export let appConfig = {
-    region: 'ap-northeast-2',
-    IdentityPoolId: '',
-    UserPoolId: 'ap-northeast-2_qCjWAmKqw',
-    ClientId: '2lps1llva1t5bkbe5g16qbb2cs',    
+  region: ,
+  IdentityPoolId: ,
+  UserPoolId: ,
+  ClientId: ,
 }
 
 Config.region = appConfig.region;
@@ -26,11 +26,11 @@ Config.credentials = new CognitoIdentityCredentials({
 });
 
 export const userPool = new CognitoUserPool({
-    UserPoolId: appConfig.UserPoolId,
-    ClientId: appConfig.ClientId,
-  });
+  UserPoolId: appConfig.UserPoolId,
+  ClientId: appConfig.ClientId,
+});
 
-  
+
 
 // export const attributeList = [
 //     new CognitoUserAttribute({

@@ -1,19 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logoutUser } from '../userSlice';
-import { persistor } from "../index"
-
+import { useContext } from "react"
+import { AuthContext } from "../AuthContext"
 export const Navigation = (props) => {
-  const user = useSelector((state) => state.user);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const { user, signOut } = useContext(AuthContext)
   const onLogoutClick = async () => {
-    dispatch(logoutUser());
-    //location.reload();
-    await persistor.purge();    // persistStore 데이터 날림
     navigate('/login');
   };
 
@@ -51,15 +45,15 @@ export const Navigation = (props) => {
             <li>
               <Link to="/myapply" className="page-scroll">
                 나의 지원서
-              </Link>              
+              </Link>
             </li>
             <li className="center-content">
-              {user.isLogin ? (
+              {user ? (
                 <div className="page-scroll" >
                   Welcome, {user.name}!
                   <br />
                   <button onClick={onLogoutClick} >Logout</button>
-                </div>                
+                </div>
               ) : (
                 <Link to="/login" className="page-scroll" >
                   로그인
