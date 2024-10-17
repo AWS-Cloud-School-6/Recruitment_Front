@@ -12,23 +12,28 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # 전체 히스토리 체크아웃 (선택사항)
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'  # Node.js 버전
+          node-version: '16'  # Node.js 버전
+
+      - name: Print working directory
+        run: pwd
 
       - name: Install dependencies
         run: npm install
-        working-directory: Recruitment_Front/template/React-Landing-Page-Template
+        working-directory: template/React-Landing-Page-Template
 
       - name: Build project
         run: npm run build
-        working-directory: Recruitment_Front/template/React-Landing-Page-Template
+        working-directory: template/React-Landing-Page-Template
 
       - name: Upload to S3
         run: |
-          aws s3 sync Recruitment_Front/template/React-Landing-Page-Template/build/ s3://tf-test-hyeob-bucket-991906 --delete
+          aws s3 sync template/React-Landing-Page-Template/build/ s3://tf-test-hyeob-bucket-991906 --delete
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
