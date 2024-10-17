@@ -3,7 +3,7 @@ name: Build and Deploy to S3
 on:
   push:
     branches:
-      - "31-test-cicd-test-for-main"
+      - "*"
 
 jobs:
   build:
